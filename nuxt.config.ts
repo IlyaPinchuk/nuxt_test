@@ -7,6 +7,6 @@ export default defineNuxtConfig({
         '@/assets/styles/main.scss'
     ],
     app: {
-        baseURL: 'https://ilyapinchuk.github.io/nuxt_test/'
+        baseURL: '/nuxt_test/'
     }
 })

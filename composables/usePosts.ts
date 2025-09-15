@@ -13,6 +13,7 @@ export const usePosts = () => {
   
 
   const saveState = () => {
+    if (process.client) {
       try {
         const state = {
           posts: posts.value,
@@ -23,9 +24,11 @@ export const usePosts = () => {
       } catch (e) {
         console.warn('Failed to save posts state:', e)
       }
+    }
   }
 
   const restoreState = () => {
+    if (process.client) {
       try {
         const saved = sessionStorage.getItem(POSTS_STORAGE_KEY)
         if (saved) {
@@ -38,17 +41,21 @@ export const usePosts = () => {
       } catch (e) {
         console.warn('Failed to restore posts state:', e)
       }
+    }
     return false
   }
 
   const saveScrollPosition = () => {
+    if (process.client) {
       try {
         sessionStorage.setItem(SCROLL_STORAGE_KEY, window.scrollY.toString())
       } catch (e) {
         console.warn('Failed to save scroll position:', e)
       }
+    }
   }
   const restoreScrollPosition = () => {
+    if (process.client) {
       try {
         const saved = sessionStorage.getItem(SCROLL_STORAGE_KEY)
         if (saved) {
@@ -60,6 +67,7 @@ export const usePosts = () => {
       } catch (e) {
         console.warn('Failed to restore scroll position:', e)
       }
+    }
   }
 
   const initializePosts = (initialPosts: Post[], page: number = 1) => {
